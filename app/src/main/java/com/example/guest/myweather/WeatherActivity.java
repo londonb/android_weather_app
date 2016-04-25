@@ -8,7 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -50,7 +52,7 @@ public class WeatherActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Double[] weekForecast = new Double[mWeathers.size()];
+                        String[] weekForecast = new String[mWeathers.size()];
                         for (int i = 0; i < weekForecast.length; i++) {
                             weekForecast[i] = mWeathers.get(i).getDate();
                         }

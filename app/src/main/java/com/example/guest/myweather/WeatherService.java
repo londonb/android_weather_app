@@ -6,7 +6,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import okhttp3.Call;
 import okhttp3.HttpUrl;
@@ -14,8 +18,6 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
-import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
 /**
  * Created by Guest on 4/25/16.
@@ -55,8 +57,14 @@ public class WeatherService {
                     JSONObject weatherJSON = forecastJSON.getJSONObject(i);
                     double minTemp = weatherJSON.getJSONObject("temp").getDouble("min");
                     double maxTemp = weatherJSON.getJSONObject("temp").getDouble("max");
-                    String description = weatherJSON.getJSONArray("weather").getString(2);
-                    double date = weatherJSON.getDouble("dt");
+                    String description = weatherJSON.getJSONArray("weather").getJSONObject(0).getString("description");
+                    long dateJSON = (weatherJSON.getLong("dt") * 1000);
+
+                    String date;
+                    SimpleDateFormat df = new SimpleDateFormat("EEEE");
+                    date = df.format(dateJSON);
+
+
 
                     Weather weather = new Weather(minTemp, maxTemp, description, date);
                     weathers.add(weather);

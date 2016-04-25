@@ -1,5 +1,8 @@
 package com.example.guest.myweather;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Guest on 4/25/16.
  */
@@ -7,9 +10,9 @@ public class Weather {
     private double mMinTemp;
     private double mMaxTemp;
     private String mDescription;
-    private double mDate;
+    private String mDate;
 
-    public Weather(double minTemp, double maxTemp, String description, double date) {
+    public Weather(double minTemp, double maxTemp, String description, String date) {
         this.mMinTemp = minTemp;
         this.mMaxTemp = maxTemp;
         this.mDescription = description;
@@ -28,7 +31,7 @@ public class Weather {
         return mDescription;
     }
 
-    public double getDate() {
+    public String getDate() {
         return mDate;
     }
 }
