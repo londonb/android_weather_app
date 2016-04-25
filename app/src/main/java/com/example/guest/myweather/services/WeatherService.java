@@ -1,6 +1,8 @@
 package com.example.guest.myweather.services;
 
 
+import android.util.Log;
+
 import com.example.guest.myweather.Constants;
 import com.example.guest.myweather.models.Weather;
 
@@ -26,12 +28,15 @@ import okhttp3.Response;
  * Created by Guest on 4/25/16.
  */
 public class WeatherService {
+    public static final String TAG = WeatherService.class.getSimpleName();
 
     public static void findWeather(String location, Callback callback) {
         String WEATHER_API_KEY = Constants.WEATHER_API_KEY;
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
+
+        Log.d(TAG, "THIS IS THE CONTENT:" + HttpUrl.parse(Constants.WEATHER_BASE_URL));
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.WEATHER_BASE_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.WEATHER_LOCATION_QUERY_PARAMETER, location);
@@ -58,8 +63,8 @@ public class WeatherService {
 
                 for(int i = 0; i < forecastJSON.length(); i++) {
                     JSONObject weatherJSON = forecastJSON.getJSONObject(i);
-                    double minTemp = weatherJSON.getJSONObject("temp").getDouble("min");
-                    double maxTemp = weatherJSON.getJSONObject("temp").getDouble("max");
+                    String minTemp = weatherJSON.getJSONObject("temp").getString("min");
+                    String maxTemp = weatherJSON.getJSONObject("temp").getString("max");
                     String description = weatherJSON.getJSONArray("weather").getJSONObject(0).getString("description");
                     long dateJSON = (weatherJSON.getLong("dt") * 1000);
 

@@ -3,11 +3,14 @@ package com.example.guest.myweather.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.guest.myweather.R;
+import com.example.guest.myweather.adapters.WeatherListAdapter;
 import com.example.guest.myweather.models.Weather;
 import com.example.guest.myweather.services.WeatherService;
 
@@ -25,7 +28,10 @@ import okhttp3.Response;
 public class WeatherActivity extends AppCompatActivity {
     public static final String TAG = WeatherActivity.class.getSimpleName();
     public ArrayList<Weather> mWeathers = new ArrayList<>();
-    @Bind(R.id.listView) ListView mListView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    private WeatherListAdapter mAdapter;
+
+
 
 
     @Override
@@ -49,26 +55,18 @@ public class WeatherActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, Response response) {
                 mWeathers = weatherService.processResults(response);
 
                 WeatherActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
-                        String[] weekForecast = new String[mWeathers.size()];
-                        for (int i = 0; i < weekForecast.length; i++) {
-                            weekForecast[i] = mWeathers.get(i).getDate();
-                        }
-                        ArrayAdapter adapter = new ArrayAdapter(WeatherActivity.this, android.R.layout.simple_expandable_list_item_1, weekForecast);
-                        mListView.setAdapter(adapter);
-
-                        for (Weather weather : mWeathers) {
-                            Log.d(TAG, "Min " + weather.getMinTemp());
-                            Log.d(TAG, "Max " + weather.getMaxTemp());
-                            Log.d(TAG, "Description: " + weather.getDescription());
-                            Log.d(TAG, "Date " + weather.getDate());
-                        }
+                        mAdapter = new WeatherListAdapter(getApplicationContext(), mWeathers);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                            new LinearLayoutManager(WeatherActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);;
+                        mRecyclerView.setHasFixedSize(true);
                     }
                 });
             }
