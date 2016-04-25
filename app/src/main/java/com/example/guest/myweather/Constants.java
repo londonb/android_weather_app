@@ -6,6 +6,6 @@ package com.example.guest.myweather;
 public class Constants {
     public static final String WEATHER_API_KEY = BuildConfig.WEATHER_API_KEY;
 
-    public static final String WEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?&&units=metric&cnt=7";
+    public static final String WEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?&&units=imperial&cnt=7";
     public static final String WEATHER_LOCATION_QUERY_PARAMETER = "q";
 }
