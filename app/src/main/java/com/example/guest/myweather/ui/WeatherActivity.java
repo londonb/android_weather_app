@@ -1,4 +1,4 @@
-package com.example.guest.myweather;
+package com.example.guest.myweather.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.guest.myweather.R;
+import com.example.guest.myweather.models.Weather;
+import com.example.guest.myweather.services.WeatherService;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

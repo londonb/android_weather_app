@@ -1,7 +1,6 @@
-package com.example.guest.myweather;
+package com.example.guest.myweather.models;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 /**
  * Created by Guest on 4/25/16.

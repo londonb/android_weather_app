@@ -1,4 +1,4 @@
-package com.example.guest.myweather;
+package com.example.guest.myweather.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.guest.myweather.R;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = MainActivity.class.getSimpleName();

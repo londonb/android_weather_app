@@ -1,5 +1,8 @@
-package com.example.guest.myweather;
+package com.example.guest.myweather.services;
 
+
+import com.example.guest.myweather.Constants;
+import com.example.guest.myweather.models.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
