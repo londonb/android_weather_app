@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.guest.myweather.R;
 import com.example.guest.myweather.models.Weather;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -64,6 +65,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
             mDescriptionView.setText(weather.getDescription());
             mMaxTextView.setText(weather.getMaxTemp());
             mMinTextView.setText(weather.getMinTemp());
+            Picasso.with(mContext).load(weather.getWeatherIcon()).into(mWeatherImageView);
         }
      }
 

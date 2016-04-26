@@ -10,12 +10,14 @@ public class Weather {
     private String mMaxTemp;
     private String mDescription;
     private String mDate;
+    private String mWeatherIcon;
 
-    public Weather(String minTemp, String maxTemp, String description, String date) {
+    public Weather(String minTemp, String maxTemp, String description, String date, String weatherIcon) {
         this.mMinTemp = minTemp;
         this.mMaxTemp = maxTemp;
         this.mDescription = description;
         this.mDate = date;
+        this.mWeatherIcon = weatherIcon;
     }
 
     public String getMinTemp() {
@@ -32,5 +34,9 @@ public class Weather {
 
     public String getDate() {
         return mDate;
+    }
+
+    public String getWeatherIcon() {
+        return "http://openweathermap.org/img/w/" + mWeatherIcon + ".png";
     }
 }

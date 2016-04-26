@@ -42,6 +42,7 @@ public class WeatherService {
         urlBuilder.addQueryParameter(Constants.WEATHER_LOCATION_QUERY_PARAMETER, location);
         urlBuilder.addQueryParameter("appid", WEATHER_API_KEY);
         String url = urlBuilder.build().toString();
+        Log.d("URL", url);
 
         Request request = new Request.Builder()
                 .url(url)
@@ -72,9 +73,10 @@ public class WeatherService {
                     SimpleDateFormat df = new SimpleDateFormat("EEEE");
                     date = df.format(dateJSON);
 
+                    String weatherIcon = weatherJSON.getJSONArray("weather").getJSONObject(0).getString("icon");
 
 
-                    Weather weather = new Weather(minTemp, maxTemp, description, date);
+                    Weather weather = new Weather(minTemp, maxTemp, description, date, weatherIcon);
                     weathers.add(weather);
                 }
             }
