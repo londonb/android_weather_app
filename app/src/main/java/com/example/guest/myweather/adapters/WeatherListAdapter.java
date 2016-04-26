@@ -1,6 +1,7 @@
 package com.example.guest.myweather.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 import com.example.guest.myweather.R;
 import com.example.guest.myweather.models.Weather;
+import com.example.guest.myweather.ui.WeatherDetailActivity;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -58,6 +62,16 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
             super (itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                    public void onClick(View v) {
+                    int itemPosition = getLayoutPosition();
+                    Intent intent = new Intent(mContext, WeatherDetailActivity.class);
+                    intent.putExtra("position", itemPosition + "");
+                    intent.putExtra("weathers", Parcels.wrap(mWeathers));
+                    mContext.startActivity(intent);
+                }
+            });
         }
 
         public void bindWeather(Weather weather) {

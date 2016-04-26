@@ -1,16 +1,20 @@
 package com.example.guest.myweather.models;
 
 
+import org.parceler.Parcel;
 
 /**
  * Created by Guest on 4/25/16.
  */
+@Parcel
 public class Weather {
     private String mMinTemp;
     private String mMaxTemp;
     private String mDescription;
     private String mDate;
     private String mWeatherIcon;
+
+    public Weather() {}
 
     public Weather(String minTemp, String maxTemp, String description, String date, String weatherIcon) {
         this.mMinTemp = minTemp;
